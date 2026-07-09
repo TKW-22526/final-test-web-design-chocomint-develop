@@ -1,0 +1,117 @@
+:root {
+    --primary-dark: #250f2a;
+    --navy-blue: #3e1e8a;
+    --accent-cyan: #3bf6ce;
+    --accent-purple: #8806d4;
+    --light-bg: #f8fafc;
+    --card-border: #e2e8f0;
+}
+
+body {
+    background-color: var(--light-bg);
+    color: #334155;
+    font-family: 'Open Sans', sans-serif; background: #f4f5f7;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+}
+
+.navbar {
+    background-color: var(--primary-dark) !important;
+    border-bottom: 3px solid var(--navy-blue);
+}   
+
+.navbar-brand, .nav-link {
+    color: #f8fafc !important;
+    font-weight: 700;
+}
+
+.nav-link:hover {
+    color: var(--accent-purple) !important;
+}
+
+.btn-dark-blue {
+    background-color: var(--navy-blue);
+    color: #ffffff;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-dark-blue:hover {
+    background-color: var(--primary-dark);
+    color: var(--accent-purple);
+}
+
+.btn-accent {
+    background-color: var(--accent-purple);
+    color: var(--primary-dark);
+    font-weight: 600;
+    border: none;
+    transition: all 0.3s ease;
+}
+
+.btn-accent:hover {
+    background-color: var(--accent-cyan);
+    color: #ffffff;
+}
+
+.product-card { 
+    border: none; 
+    border-radius: 10px; 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    transition: transform .15s; height: 100%;
+}
+
+.product-card:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}
+
+.product-img { 
+    height: 200px; 
+    object-fit: contain; 
+    padding: 15px; background: #fff; 
+    border-radius: 10px 10px 0 0;
+}
+
+
+.badge-sku { background: #0d1b3e; 
+    font-size: .75rem; 
+    font-weight: 600; 
+}
+.product-title { 
+    color: #0d1b3e; 
+    font-weight: 700; 
+    font-size: 1.05rem; 
+}
+
+.product-price { 
+    color: #c0392b; 
+    font-weight: 700; 
+    font-size: 1.15rem; 
+}
+
+.btn-black { 
+    background: #000; 
+    color: #fff; border: none; 
+    border-radius: 20px; 
+    font-size: .85rem; 
+    padding: 6px 16px; 
+}
+
+.btn-black:hover {
+    background: #222; 
+    color: #fff; 
+}
+
+.price-tag::after { 
+    content: "đ"; 
+    text-decoration: underline; 
+    margin-left: 2px; 
+}
+
+footer { 
+    background: #0d1b3e; 
+    color: #ccc; 
+}
