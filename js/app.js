@@ -33,3 +33,11 @@ function renderProducts(){
     list.appendChild(clone);
   });
 }
+
+function goDetail(link){
+  const idx = link.getAttribute('data-idx');
+  
+  localStorage.setItem('products', JSON.stringify(products));
+  
+  window.location.href = 'html/chi-tiet.html?id=' + idx;
+}
