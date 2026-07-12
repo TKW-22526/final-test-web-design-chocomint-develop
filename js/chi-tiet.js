@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const container = document.getElementById('detail-content');
 
     if (product) {
-        document.title = product.name + " - IoTShop";
+        document.title = product.name + " - OpenTablet Shop";
         document.getElementById('breadcrumb-name').textContent = product.name;
 
         container.innerHTML = `
