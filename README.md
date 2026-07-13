@@ -175,10 +175,10 @@ Sinh viên cần nộp đầy đủ các nội dung sau:
 Sinh viên cập nhật thông tin cá nhân tại đây:
 
 ```text
-Họ và tên:
-Mã số sinh viên:
-Lớp:
-Tên đề tài:
-Liên kết GitHub repository:
-Liên kết GitHub Pages:
+Họ và tên: Đặng Thành Tân
+Mã số sinh viên: 110125146
+Lớp: DA25TTB
+Tên đề tài: Thiết Kế Website Cung Cấp Các Thiết Bị Bảng Vẽ Kỹ Thuật Số
+Liên kết GitHub repository: https://github.com/TKW-22526/final-test-web-design-chocomint-develop
+Liên kết GitHub Pages: https://tkw-22526.github.io/final-test-web-design-chocomint-develop/
 ```
