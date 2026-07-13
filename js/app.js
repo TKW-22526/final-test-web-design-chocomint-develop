@@ -5,31 +5,36 @@ const products = [
     desc: "Bảng vẽ giá rẻ tốt nhất cho đại đa số người dùng cơ bản",
     price: 885000,
     img: "assets/ctl-472.webp",
-    type: "no-screen"
+    type: "no-screen",
+    category: ["education", "osu"]
   },
   {
     model: "CTL 480",
     name: "Wacom Intuos Pen CTL-480",
-    desc: "Bảng vẽ entry-level tốt nhất cho osu!",
+    desc: "Bảng vẽ entry-level tốt nhất cho osu",
     price: 950000,
     img: "assets/ctl-480.jpg",
-    type: "no-screen"
+    type: "no-screen",
+    category: ["education", "osu"]
   },
   {
     model: "PTH-660",
     name: "Wacom Intuos Pro Medium",
-    desc: "là bảng vẽ điện tử cao cấp dành cho dân thiết kế, và người chơi osu! chuyên nghiệp",
+    desc: "là bảng vẽ điện tử cao cấp dành cho dân thiết kế, và người chơi osu chuyên nghiệp",
     price: 9390000,
     img: "assets/pth-660-k0.webp",
-    type: "no-screen"
+    type: "no-screen",
+    category: ["professional", "osu"]
   },
   {
     model: "CTL-4100WL/K",
     name: "Wacom Intuos S (Bluetooth)",
-    desc: "là bảng vẽ điện tử cao cấp dành cho dân thiết kế, và người chơi osu! chuyên nghiệp",
+    desc: "là bảng vẽ điện tử cao cấp dành cho dân thiết kế, và người chơi osu chuyên nghiệp",
     price: 2490000,
     img: "assets/ctl-4100wl-k.jpg",
-    type: "no-screen"
+    type: "no-screen",
+    category: ["professional", "osu", "education"]
+
   },
   // có màn hình
   {
@@ -38,7 +43,8 @@ const products = [
     desc: "Sản phẩm lý tưởng cho cả họa sĩ nghiệp dư lẫn những ai yêu thích tư duy hình ảnh. Với Wacom One, bạn có thể vẽ, phác thảo, chỉnh sửa ảnh, ghi chú, chú thích và khám phá đam mê sáng tạo theo cách dễ dàng hơn.",
     price: 9690000,
     img: "assets/dtc141.png",
-    type: "screen"
+    type: "screen",
+    category: ["professional", "education"]
   },
   {
     model: "MD160FH",
@@ -46,7 +52,8 @@ const products = [
     desc: "là dòng bảng vẽ màn hình đồ họa được ưa chuộng, nổi bật với màn hình lớn 15.6 inch",
     price: 7990000,
     img: "assets/md160fh.jpg",
-    type: "screen"
+    type: "screen",
+    category: ["professional", "education"]
   },
   {
     model: "iPad Pro 11",
@@ -54,7 +61,8 @@ const products = [
     desc: "iPad Pro M5 11-inch là công cụ tối thượng cho nhà sáng tạo. Nổi bật với thiết kế siêu mỏng 5.3 mm, chip M5 đột phá, màn hình Ultra Retina XDR siêu thực",
     price: 34900000,
     img: "assets/ipad-pro-m5.webp",
-    type: "screen"
+    type: "screen",
+    category: ["professional"]
   },
   {
     model: "GT2702",
@@ -62,7 +70,8 @@ const products = [
     desc: "Huion Kamvas Pro 27 (144Hz) là bảng vẽ màn hình 4K siêu lớn, đầu tiên trong ngành kết hợp không gian làm việc bao la, tần số quét 144Hz mượt mà và bút PenTech 4.0.",
     price: 57900000,
     img: "assets/kamvas-pro27144hz-comparison-pic.png",
-    type: "screen"
+    type: "screen",
+    category: ["professional"]
   },
   {
     model: "DTK-246",
@@ -70,7 +79,8 @@ const products = [
     desc: " là bảng vẽ màn hình chuyên nghiệp cung cấp không gian làm việc rộng lớn. Đây là công cụ thiết yếu dành cho nhà sáng tạo nội dung, họa sĩ kỹ thuật số và các chuyên gia thiết kế.",
     price: 38900000,
     img: "assets/cintiq-24.jpg",
-    type: "screen"
+    type: "screen",
+    category: ["professional"]
   }
 ];
 
@@ -104,13 +114,15 @@ function renderProducts(listId, items = mapProducts()){
   });
 }
 
-function getFilteredProducts(keyword = '', type){
+function getFilteredProducts(keyword = '', type, category = 'all'){
   const normalizedKeyword = keyword.trim().toLowerCase();
 
   return mapProducts().filter(({ product }) => {
     const matchesType = type ? product.type === type : true;
 
-    if (!matchesType) {
+    const matchesCategory = category === 'all' || (product.category && product.category.includes(category));
+
+    if (!matchesType || !matchesCategory) {
       return false;
     }
 
@@ -132,3 +144,29 @@ function goDetail(link){
 
   window.location.href = 'html/chi-tiet.html?id=' + idx;
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+  const searchInput = document.getElementById('search-input');
+  const filterSelect = document.getElementById('product-filter');
+
+  function applyFilters() {
+    const currentKeyword = searchInput ? searchInput.value : '';
+    const currentCategory = filterSelect ? filterSelect.value : 'all';
+
+    const filteredNoScreen = getFilteredProducts(currentKeyword, 'no-screen', currentCategory);
+    renderProducts('no-screen-list', filteredNoScreen);
+
+    const filteredScreen = getFilteredProducts(currentKeyword, 'screen', currentCategory);
+    renderProducts('screen-list', filteredScreen);
+  }
+
+  if (searchInput) {
+    searchInput.addEventListener('input', applyFilters);
+  }
+
+  if (filterSelect) {
+    filterSelect.addEventListener('change', applyFilters);
+  }
+
+  applyFilters();
+});
