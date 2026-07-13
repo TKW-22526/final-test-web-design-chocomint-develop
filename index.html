@@ -64,6 +64,19 @@
     
     <!-- product area -->
     <main class="py-5">
+        <div class="container mb-5">
+        <div class="d-flex justify-content-center align-items-center gap-2">
+            <label for="product-filter" class="fw-bold fs-5 text-nowrap" style="color:#250f2a">
+                <i class="bi bi-funnel-fill"></i> Lọc theo nhu cầu:
+            </label>
+            <select class="form-select w-auto fw-semibold" id="product-filter" style="border-color: #0d1b3e; color: #0d1b3e;">
+                <option value="all" selected>Tất cả (Mặc định)</option>
+                <option value="osu">Dành cho người chơi osu!</option>
+                <option value="education">Học tập - Giảng dạy</option>
+                <option value="professional">Chuyên nghiệp - Bán chuyên</option>
+            </select>
+        </div>
+    </div>
         <div class="container my-5" id="products-section">
             <h2 class="fw-bold mb-4 text-center" style="color:#0d1b3e">Bảng vẽ không màn hình</h2>
             <div class="row g-4" id="no-screen-list"></div>
