@@ -15,12 +15,6 @@ body {
     object-fit: contain; 
 }
 
-.badge-sku { 
-    background: #0d1b3e; 
-    font-size: .8rem; 
-    font-weight: 600; 
-}
-
 .price-tag::after { 
     content: "đ"; 
     text-decoration: underline; 
@@ -44,4 +38,10 @@ body {
 .btn-black:hover { 
     background: #222; 
     color: #fff; 
+}
+
+.badge-model { 
+    background: #0d1b3e; 
+    font-size: .8rem; 
+    font-weight: 600; 
 }
