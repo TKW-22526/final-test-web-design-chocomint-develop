@@ -1,33 +1,100 @@
-function formatVND(n){ return n.toLocaleString('vi-VN'); }
-
-// Lấy id sản phẩm từ query string, ví dụ product-detail.html?id=2
-const params = new URLSearchParams(window.location.search);
-const id = params.get('id');
-
-// Đọc danh sách sản phẩm đã lưu từ trang shop.html
-const products = JSON.parse(localStorage.getItem('products') || '[]');
-const product = products[id];
-
-const container = document.getElementById('detail-content');
-
-if (product){
-document.title = product.name + " - IoTShop";
-document.getElementById('breadcrumb-name').textContent = product.name;
-
-container.innerHTML = `
-    <div class="col-12 col-md-5">
-    <div class="product-img-box">
-        <img src="${product.img}" alt="${product.name}">
-    </div>
-    </div>
-    <div class="col-12 col-md-7">
-    <span class="badge badge-model text-white mb-2 d-inline-block">${product.model}</span>
-    <h2 class="fw-bold" style="color:#0d1b3e">${product.name}</h2>
-    <p class="text-muted">${product.desc}</p>
-    <p class="product-price price-tag mb-4">${formatVND(product.price)}</p>
-    <button class="btn btn-black">Thêm vào giỏ hàng</button>
-    </div>
-`;
-} else {
-container.innerHTML = `<div class="col-12"><p class="text-danger">Không tìm thấy sản phẩm.</p></div>`;
+function attachPasswordToggleListeners() {
+  const toggleButtons = document.querySelectorAll(".toggle-password");
+  toggleButtons.forEach((button) => button.addEventListener("click", togglePasswordVisibility));
 }
+
+function validateConfirmPasswordMatch() {
+  const password = document.getElementById("registerPassword");
+  const confirmPassword = document.getElementById("confirmPassword");
+  if (!password || !confirmPassword) return;
+
+  if (confirmPassword.value !== password.value) {
+    confirmPassword.setCustomValidity("Mật khẩu xác nhận không trùng khớp.");
+  } else {
+    confirmPassword.setCustomValidity("");
+  }
+}
+
+function togglePasswordVisibility(event) {
+  const button = event.currentTarget;
+  const input = document.getElementById(button.dataset.target);
+  if (!input) return;
+  
+  const icon = button.querySelector("i");
+  const isHidden = input.type === "password";
+
+  input.type = isHidden ? "text" : "password";
+  icon.classList.toggle("bi-eye", !isHidden);
+  icon.classList.toggle("bi-eye-slash", isHidden);
+}
+
+// đăng nhập
+function handleLoginFormSubmit(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const alertBox = document.getElementById("loginAlert");
+  if (!alertBox) return;
+
+  if (!form.checkValidity()) {
+    form.classList.add("was-validated");
+    alertBox.classList.add("d-none");
+    return;
+  }
+
+  form.classList.add("was-validated");
+  alertBox.textContent = "Đăng nhập thành công! (demo, không kết nối máy chủ)";
+  alertBox.classList.remove("d-none");
+}
+
+// dang ky
+function handleRegisterFormSubmit(event) {
+  event.preventDefault();
+  const form = event.currentTarget;
+  const alertBox = document.getElementById("registerAlert");
+  if (!alertBox) return;
+
+  validateConfirmPasswordMatch();
+
+  if (!form.checkValidity()) {
+    form.classList.add("was-validated");
+    alertBox.classList.add("d-none");
+    return;
+  }
+  form.classList.add("was-validated");
+  alertBox.textContent = "Đăng ký thành công! (đây là form demo, chưa kết nối máy chủ)";
+  alertBox.classList.remove("d-none");
+}
+
+// event cho dang nhap
+function initLoginPage() {
+  const loginForm = document.getElementById("loginForm");
+  if (!loginForm) return;
+  loginForm.addEventListener("submit", handleLoginFormSubmit);
+}
+
+// đoán xem
+function initRegisterPage() {
+  const registerForm = document.getElementById("registerForm");
+  if (!registerForm) return;
+
+  registerForm.addEventListener("submit", handleRegisterFormSubmit);
+
+  const passwordInput = document.getElementById("registerPassword");
+  const confirmInput = document.getElementById("confirmPassword");
+  
+  // Chỉ giữ lại sự kiện check khớp mật khẩu
+  if (passwordInput) {
+    passwordInput.addEventListener("input", validateConfirmPasswordMatch);
+  }
+  if (confirmInput) {
+    confirmInput.addEventListener("input", validateConfirmPasswordMatch);
+  }
+}
+
+function initAuthPage() {
+  attachPasswordToggleListeners();
+  initLoginPage();
+  initRegisterPage();
+}
+
+document.addEventListener("DOMContentLoaded", initAuthPage);
