@@ -115,3 +115,8 @@ footer {
     background: #0d1b3e; 
     color: #ccc; 
 }
+
+.input-group { 
+    border: 2px solid var(--card-border); 
+    border-radius: 6px; 
+}
