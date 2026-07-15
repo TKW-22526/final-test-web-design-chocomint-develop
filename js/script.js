@@ -42,8 +42,11 @@ function handleLoginFormSubmit(event) {
   }
 
   form.classList.add("was-validated");
-  alertBox.textContent = "Đăng nhập thành công! (demo, không kết nối máy chủ)";
+  alertBox.textContent = "Đăng nhập thành công! (demo)";
   alertBox.classList.remove("d-none");
+  setTimeout(() => {
+    window.location.href = "../index.html";
+  }, 800);
 }
 
 // dang ky
@@ -61,8 +64,11 @@ function handleRegisterFormSubmit(event) {
     return;
   }
   form.classList.add("was-validated");
-  alertBox.textContent = "Đăng ký thành công! (đây là form demo, chưa kết nối máy chủ)";
+  alertBox.textContent = "Đăng ký thành công! (demo)";
   alertBox.classList.remove("d-none");
+  setTimeout(() => {
+    window.location.href = "./login.html";
+  }, 800);
 }
 
 // event cho dang nhap
