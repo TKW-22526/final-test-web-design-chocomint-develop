@@ -56,7 +56,7 @@ const products = [
     category: ["professional", "education"]
   },
   {
-    model: "iPad Pro 11",
+    model: "iPad 17.1",
     name: "iPad Pro M5 11 inch",
     desc: "iPad Pro M5 11-inch là công cụ tối thượng cho nhà sáng tạo. Nổi bật với thiết kế siêu mỏng 5.3 mm, chip M5 đột phá, màn hình Ultra Retina XDR siêu thực",
     price: 34900000,
