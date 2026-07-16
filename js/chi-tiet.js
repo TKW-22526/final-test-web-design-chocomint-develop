@@ -1,8 +1,3 @@
-// vnd
-function formatVND(n) { 
-    return n.toLocaleString('vi-VN') + ' đ'; 
-}
-
 document.addEventListener("DOMContentLoaded", function () {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
@@ -26,10 +21,19 @@ document.addEventListener("DOMContentLoaded", function () {
                 <span class="badge badge-model text-white mb-2 d-inline-block">${product.model}</span>
                 <h2 class="fw-bold" style="color:#0d1b3e">${product.name}</h2>
                 <p class="text-muted">${product.desc}</p>
-                <p class="product-price price-tag mb-4">${formatVND(product.price)}</p>
-                <button class="btn btn-black">Thêm vào giỏ hàng</button>
+                <p class="product-price price-tag mb-4">${CartDemo.formatVND(product.price)}</p>
+                <button class="btn btn-black" id="add-to-cart-btn">Thêm vào giỏ hàng</button>
             </div>
         `;
+
+        const addToCartButton = document.getElementById('add-to-cart-btn');
+
+        if (addToCartButton) {
+            addToCartButton.addEventListener('click', function () {
+                CartDemo.addItem(product, 1);
+                alert('Đã thêm sản phẩm vào giỏ hàng demo.');
+            });
+        }
     } else {
         container.innerHTML = `<div class="col-12"><p class="text-danger">Không tìm thấy sản phẩm.</p></div>`;
     }
