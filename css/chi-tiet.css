@@ -15,16 +15,14 @@ body {
     object-fit: contain; 
 }
 
-.price-tag::after { 
-    content: "đ"; 
-    text-decoration: underline; 
-    margin-left: 2px; 
-}
-
 .product-price { 
     color: #c0392b; 
     font-weight: 700; 
     font-size: 1.8rem; 
+}
+
+.product-price.price-tag::after {
+    content: none !important;
 }
 
 .btn-black { 
