@@ -101,6 +101,15 @@ function renderProducts(listId, items = mapProducts()){
   }
 
   list.innerHTML = '';
+
+  if (!items.length) {
+    const emptyState = document.createElement('div');
+    emptyState.className = 'col-12';
+    emptyState.innerHTML = '<p class="text-danger text-center fw-semibold mb-0">không tìm thấy sản phẩm</p>';
+    list.appendChild(emptyState);
+    return;
+  }
+
   items.forEach(({ product, idx }) => {
     const clone = tpl.content.cloneNode(true);
     clone.querySelector('.product-img').src = product.img;
