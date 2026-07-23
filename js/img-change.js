@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const productFilter = document.getElementById('product-filter');
     const bannerImg = document.getElementById('banner-img'); 
     const filterImages = {
-        'all': 'assets/test-bg2.jpg',                 // Deffault img
+        'all': 'assets/test-bg5-1-insider.png',                 // Deffault img
         'osu': 'assets/test-bg4.webp',                   
         'education': 'assets/test-bg1.webp',       
         'professional': 'assets/test-bg3.jpg' 
